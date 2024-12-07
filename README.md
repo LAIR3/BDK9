@@ -1,4 +1,4 @@
-# LAIR3-BDK9 layer 3 Blockchain Deployment Kit v9
+# LAIR3/BDK9 layer 3 Blockchain Deployment Kit v9
 each of these versions is a continuation of the improvements and a fork of the kurtosis-cdk from Polygon labs for local devnet research and development with audits of continuous improvements and internal documentation from version BDK5. To date I have not made any commits to the original tree <br />
 lair: a place where a wild animal, especially a fierce or dangerous one, lives<br />
 pronounced: layer three Blockchain Deployment Kit<br />
