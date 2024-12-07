@@ -112,7 +112,7 @@ this will take between 5 and 20 minutes depending on your hardware
 
 ```bash
 kurtosis clean --all
-kurtosis run --enclave bdk-v5 --args-file params.yml --image-download always .
+kurtosis run --enclave bdk-v9 --args-file params.yml --image-download always .
 ```
 
 ![Architecture Diagram](./docs/img/starlark.png)
@@ -131,13 +131,13 @@ this will take between 5 and 20 minutes depending on your hardware
 
 ```bash
 kurtosis clean --all
-kurtosis run --enclave bdk-v5 --args-file params.yml --image-download always .
+kurtosis run --enclave bdk-v9 --args-file params.yml --image-download always .
 ```
 
 The command above deploys a BDK stack using [zkevm-node](https://github.com/0xPolygonHermez/zkevm-node) as the sequencer. Alternatively, to launch a CDK stack using [cdk-erigon](https://github.com/0xPolygonHermez/cdk-erigon) as a sequencer, you can run the following command.
 
 ```bash
-kurtosis run --enclave bdk-v5 --args-file cdk-erigon-sequencer-params.yml --image-download always .
+kurtosis run --enclave bdk-v9 --args-file cdk-erigon-sequencer-params.yml --image-download always .
 ```
 
 # simple L2 RPC test call.
@@ -145,14 +145,14 @@ kurtosis run --enclave bdk-v5 --args-file cdk-erigon-sequencer-params.yml --imag
 First, you will need to figure out which port Kurtois uses for the RPC. You can get a general feel for the entire network layout by running the following command:
 
 ```bash
-kurtosis enclave inspect bdk-v5
+kurtosis enclave inspect bdk-v9
 ```
 
 # view port mapping
-within enclave `bdk-v2` for `zkevm-node-rpc` service and `trusted-rpc`storing the RPC URL as an environment variable:<br />
+within enclave `bdk-v9` for `zkevm-node-rpc` service and `trusted-rpc`storing the RPC URL as an environment variable:<br />
 
 ```bash
-export ETH_RPC_URL="$(kurtosis port print bdk-v2 zkevm-node-rpc-001 http-rpc)"
+export ETH_RPC_URL="$(kurtosis port print bdk-v9 zkevm-node-rpc-001 http-rpc)"
 ```
 
 That is the same environment variable that `cast` uses, so you should now be able to run this command. Note that the steps below will assume you have the [Foundry toolchain](https://book.getfoundry.sh/getting-started/installation) installed.
@@ -255,7 +255,7 @@ requirements include but not limited to<br />
 
 # zkevm_bridge logs ./lib/zkevm_bridge.star<br />
 ```bash
-kurtosis service logs cdk-v1 zkevm-bridge-ui-001
+kurtosis service logs bdk-v9 zkevm-bridge-ui-001
 ```
 
 # run the bridge UI standalone<br />
@@ -294,17 +294,17 @@ kurtosis enclave ls
 
 # Inspect the Kurtosis enclave
 ```bash
-kurtosis enclave inspect bdk-v5
+kurtosis enclave inspect bdk-v9
 ```
 
 # Check the logs of the failing service
 ```bash
-kurtosis service logs bdk-v5 zkevm-bridge-ui-001
+kurtosis service logs bdk-v9 zkevm-bridge-ui-001
 ```
 # Open a service shell
 enter the service container to manually inspect and debug example brige-ui<br />
 ```bash
-kurtosis service shell bdk-v5 zkevm-bridge-ui-001
+kurtosis service shell bdk-v9 zkevm-bridge-ui-001
 ```
 
 # Environment Setup
@@ -356,7 +356,7 @@ docker network inspect NAME
 ```
 
 ############ START ############
-# BDK-v5 as Kurtosis Enclave
+# BDK-v9 as Kurtosis Enclave
 
 ```bash
 kurtosis run --enclave BDK-v5 --args-file params.yml --image-download always .
@@ -369,20 +369,20 @@ kurtosis enclave ls
 ```
 
 ```bash
-kurtosis enclave inspect BDK-v5
+kurtosis enclave inspect bdk-v9
 ```
 
 # Fetch Service Logs
 
 ```bash
-kurtosis service logs bdk-v5 zkevm-agglayer-001
+kurtosis service logs bdk-v9 zkevm-agglayer-001
 ```
 
 # Add Permissionless Node
 
 ```bash
 yq -Y --in-place 'with_entries(if .key == "deploy_zkevm_permissionless_node" then .value = true elif .value | type == "boolean" then .value = false else . end)' params.yml
-kurtosis run --enclave cdk-v1 --args-file params.yml --image-download always .
+kurtosis run --enclave bdk-v9 --args-file params.yml --image-download always .
 ```
 
 # Sync External Permissionless Node
@@ -390,7 +390,7 @@ kurtosis run --enclave cdk-v1 --args-file params.yml --image-download always .
 ```bash
 cp /path/to/external/genesis.json templates/permissionless-node/genesis.json
 yq -Y --in-place 'with_entries(if .key == "deploy_zkevm_permissionless_node" then .value = true elif .value | type == "boolean" then .value = false else . end)' params.yml
-kurtosis run --enclave bdk-v5 --args-file params.yml --image-download always .
+kurtosis run --enclave bdk-v9 --args-file params.yml --image-download always .
 ```
 
 # Simple RPC Calls
