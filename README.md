@@ -21,7 +21,8 @@ instructions are somewhat specific to Ubuntu 22.04LTS<br />
 <a href="https://docs.timescale.com/self-hosted/latest/install/installation-docker/">pgvectorscale timescale</a><br />
 <a href="https://docs.docker.com/engine/install/">docker engine install</a><br />
 <a href="https://training.github.com/downloads/github-git-cheat-sheet/">github quick reference</a><br />
-
+<a href="https://docs.kurtosis.com/how-to-local-eth-testnet">local ETH testnet</a><br />
+<a href="https://docs.kurtosis.com/how-to-compose-your-own-testnet/">private local ETH testnet</a><br />
 
 to begin install the following requirements<br />
 
